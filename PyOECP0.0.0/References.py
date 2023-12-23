@@ -58,6 +58,74 @@ def Short(frequency,temperature=25,c=None):
             
     return data
 
+def read_epsilon_data(file_path):
+    data = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            if line.startswith('#'):  # Skip comment lines
+                continue
+            parts = line.split()
+            if len(parts) >= 2:
+                # Assuming the second part is the relevant data
+                data.append(float(parts[1]))
+    return np.array(data)
+
+def Open_CST(frequency, temperature=25, c=None):
+    epsilon_real_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\air相对介电常数实部(67GHz).txt")
+    epsilon_imag_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\air相对介电常数虚部(67GHz).txt")
+    data = {}
+    data['minFREQ'] = -np.inf
+    data['maxFREQ'] = np.inf
+    data['Citation'] = 'None'
+    data['minTemperature (C)'] = -np.inf
+    data['maxTemperature (C)'] = np.inf
+    data['frequency'] = frequency
+    data['Temperature (C)'] = 'Measured'
+    data['epsilon'] = epsilon_real_updated - 1j * epsilon_imag_updated  # Combine real and imaginary parts correctly
+    return data
+
+def Short_CST(frequency, temperature=25, c=None):
+    epsilon_real_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\short相对介电常数实部(67GHz).txt")
+    epsilon_imag_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\short相对介电常数虚部(67GHz).txt")
+    data = {}
+    data['minFREQ'] = -np.inf
+    data['maxFREQ'] = np.inf
+    data['Citation'] = 'None'
+    data['minTemperature (C)'] = -np.inf
+    data['maxTemperature (C)'] = np.inf
+    data['frequency'] = frequency
+    data['Temperature (C)'] = 'Measured'
+    data['epsilon'] = epsilon_real_updated - 1j * epsilon_imag_updated  # Combine real and imaginary parts correctly
+    return data
+
+def Water_CST(frequency, temperature=25, c=None):
+    epsilon_real_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\water(debye model)相对介电常数实部(67GHz).txt")
+    epsilon_imag_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\water(debye model)相对介电常数虚部(67GHz).txt")
+    data = {}
+    data['minFREQ'] = -np.inf
+    data['maxFREQ'] = np.inf
+    data['Citation'] = 'None'
+    data['minTemperature (C)'] = -np.inf
+    data['maxTemperature (C)'] = np.inf
+    data['frequency'] = frequency
+    data['Temperature (C)'] = 'Measured'
+    data['epsilon'] = epsilon_real_updated - 1j * epsilon_imag_updated  # Combine real and imaginary parts correctly
+    return data
+
+def Rogers4003_CST(frequency, temperature=25, c=None):
+    epsilon_real_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\Rogers4003相对介电常数实部(67GHz).txt")
+    epsilon_imag_updated = read_epsilon_data("D:\科研\液体电磁参数测量\数据\开路同轴线\不带法兰盘\Rogers4003相对介电常数虚部(67GHz).txt")
+    data = {}
+    data['minFREQ'] = -np.inf
+    data['maxFREQ'] = np.inf
+    data['Citation'] = 'None'
+    data['minTemperature (C)'] = -np.inf
+    data['maxTemperature (C)'] = np.inf
+    data['frequency'] = frequency
+    data['Temperature (C)'] = 'Measured'
+    data['epsilon'] = epsilon_real_updated - 1j * epsilon_imag_updated  # Combine real and imaginary parts correctly
+    return data
+
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Pure solvents
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
