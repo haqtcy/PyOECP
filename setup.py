@@ -14,6 +14,6 @@ setup(
       author_email = 'tyoon@cnu.ac.kr',
       packages=['PyOECP'],
       py_modules=['PyOECP/Transform','PyOECP/References','PyOECP/Models'],
-      url='https://github.com/tyoon124',
+      url='https://github.com/haqtcy/PyOECP',
       description='A flexible open-source software library for estimating and modeling the complex permittivity based on the open-ended coaxial probe technique',
 )
